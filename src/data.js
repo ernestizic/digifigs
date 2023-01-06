@@ -6,49 +6,56 @@ export const giftSuggestions = [
         title: 'Air force Max',
         image: Image1,
         price: 2000,
-        url: 'https://myurl.co'
+        url: 'https://myurl.co',
+        selected: false
     },
     {
         id: 2,
         title: 'Birkins Bag',
         image: Image2,
         price: 2000,
-        url: 'https://myurl.co'
+        url: 'https://myurl.co',
+        selected: false
     },
     {
         id: 3,
         title: 'Toy',
         image: Image1,
         price: 2000,
-        url: 'https://myurl.co'
+        url: 'https://myurl.co',
+        selected: false
     },
     {
         id: 4,
         title: 'Birkins Bag',
         image: Image2,
         price: 2000,
-        url: 'https://myurl.co'
+        url: 'https://myurl.co',
+        selected: false
     },
     {
         id: 5,
         title: 'Birkins Bag',
         image: Image2,
         price: 2000,
-        url: 'https://myurl.co'
+        url: 'https://myurl.co',
+        selected: false
     },
     {
         id: 50,
         title: 'Birkins Bag',
         image: Image2,
         price: 2000,
-        url: 'https://myurl.co'
+        url: 'https://myurl.co',
+        selected: false
     },
     {
         id: 7,
         title: 'Birkins Bag',
         image: Image2,
         price: 2000,
-        url: 'https://myurl.co'
+        url: 'https://myurl.co',
+        selected: false
     },
 ]
 

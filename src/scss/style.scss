@@ -27,7 +27,8 @@ body{
 ::-webkit-scrollbar {
 	display: none;
 }
-button {
+button, a {
+	color: $color-dark;
     &:hover {
         cursor: pointer;
     }
