@@ -1,0 +1,49 @@
+.welcome-screen {
+    background: $color-dark;
+    min-height: 100vh;
+    color: $color-white;
+
+    & > div {
+        clear: both;
+        max-width: 40%;
+        margin: 0 auto;
+
+        h1{
+            margin: 10px 0;
+        }
+        p{
+            color: $color-white;
+            margin-bottom: 40px;
+        }
+        a{
+            display: flex;
+            justify-content: center;
+            color: $color-primary;
+            text-decoration: none;
+        }
+    }
+
+    .back-btn{
+        float: right;
+        margin: 30px 30px 100px;
+        padding: 20px 60px;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .welcome-screen {
+    
+        & > div {
+            clear: both;
+            max-width: 90%;
+        }
+    
+        .back-btn{
+            padding: 15px 40px;
+        }
+    }
+    
+}

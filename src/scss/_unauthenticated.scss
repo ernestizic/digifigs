@@ -1,0 +1,73 @@
+.unauthenticated-screen {
+    background: $color-dark;
+    min-height: 100vh;
+
+    & > div {
+        clear: both;
+        max-width: 40%;
+        margin: 0 auto;
+
+        p{
+            color: $color-white;
+            font-size: 23px;
+            margin: 20px 0;
+        }
+
+        .no-access-action-container {
+            display: flex;
+            align-items: left;  
+            gap: 20px;
+            %no-access-action-buttons{
+                width: 200px;
+                display: flex;
+                justify-content: center;
+                padding: 20px;
+                border-radius: 6px;
+                font-size: 16px;
+                &:hover {
+                    border: 1px solid darken($color-primary, 20%);
+                    background-color: darken($color-primary, 20%);
+                    color: $color-white
+                }
+            }
+            .cancel-button {
+                @extend %no-access-action-buttons;
+                border: 1px solid $color-white;
+                background-color: $color-white
+            }
+            .sign-up-button {
+                @extend %no-access-action-buttons;
+                color: $color-white;
+                border: 1px solid $color-primary;
+                background-color: $color-primary
+            }
+        }
+    }
+
+    .back-btn{
+        float: right;
+        margin: 30px 30px 100px;
+        padding: 20px 60px;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .unauthenticated-screen {
+    
+        & > div {
+            clear: both;
+            max-width: 90%;
+            p{
+                font-size: 18px;
+            }
+        }
+    
+        .back-btn{
+            padding: 15px 40px;
+        }
+    }
+    
+}

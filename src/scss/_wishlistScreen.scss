@@ -1,0 +1,80 @@
+.wishlist-screen {
+    .wishlist-screen-content {
+        max-width: 45%;
+        margin: 20px auto;
+        text-align: center;
+        button{
+            background-color: $color-primary;
+            border-radius: 5px;
+            margin: 20px;
+            padding: 12px 25px;
+            color: $color-white;
+            border: 1px solid $color-primary;
+        }
+    }
+}
+
+.user-info-submit-btn {
+    width: 100%;
+    margin: 10px 0;
+    background-color: $color-primary;
+    color: $color-white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    &:disabled {
+        background-color: lighten($color-primary, 20%);
+        cursor: not-allowed;
+    }
+}
+
+.interest-submit-btn-container {
+    border-top: 1px solid darken($color-bg, 10%);
+    width: 100%;
+    padding-top: 5px;
+}
+
+.interest-list {
+    margin: 15px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-height: 45vh;
+    overflow: scroll;
+
+    %interest-type {
+        border: 1px solid darken($color-bg, 10%);
+        border-radius: 6px;
+        height: 80px;
+        position: relative;
+        padding: 6px;
+        &:hover {
+            cursor: pointer;
+        }
+        p{
+            max-width: 80%;
+            position: absolute;
+            bottom: 2px;
+        }
+        .fa-check {
+            float: right;
+            color: $color-white;
+        }
+    }
+    .interest{
+        @extend %interest-type
+    }
+    .selected-interest{
+        @extend %interest-type;
+        background-color: $color-dark;
+        color: $color-white;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .wishlist-screen {
+        .wishlist-screen-content {
+            max-width: 100%;
+        }
+    }
+}
