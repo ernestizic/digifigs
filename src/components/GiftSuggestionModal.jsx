@@ -81,9 +81,18 @@ const GiftSuggestionModal = ({
 								</div>
 							</div>
 							{item.selected ? (
-								<button type='button' onClick={() => removeSuggestion(idx, item)}>Remove</button>
+								<button 
+									type='button' 
+									onClick={() => removeSuggestion(idx, item)}
+									style={{border: '1px solid #9f2424', color: '#9f2424'}}
+								>
+									Remove
+								</button>
 							): (
-								<button type='button' onClick={() => selectSuggestion(item)}>
+								<button 
+									type='button' 
+									onClick={() => selectSuggestion(item)} 
+								>
 									Add
 								</button>
 							)}
