@@ -10,15 +10,28 @@ const GiftSuggestionModal = ({
 	arrayHelpers,
 }) => {
 	const [suggestion, setSuggestion] = useState(giftSuggestions);
+	
+	// Determine if all attributes on the object is null or an empty string
+	function checkProperties(obj) {
+		for (var key in obj) {
+			if (obj[key] !== null && obj[key] !== "")
+				return false;
+		}
+		return true;
+	}
+
+	// Get the last object in the array form
+	const lastOpenedWishFormObj = values.wishes.slice(-1)
+	const isLastFormEmpty = checkProperties(lastOpenedWishFormObj[0])
+	const lastIndex = values.wishes.length - 1;
 
 	// function to add suggestion
-	const selectSuggestion = (suggestion) => {
-		const lastWishField = values.wishes[values.wishes.length - 1]
-		if([lastWishField.wishName, lastWishField.price, lastWishField.url].includes("")) {
-			setFieldValue(`wishes[0].wishName`, suggestion.title)
-			setFieldValue(`wishes[0].price`, suggestion.price)
-			setFieldValue(`wishes[0].url`, suggestion.url)
-			setFieldValue(`wishes[0].photo`, suggestion.image)
+	const addSuggestion = (suggestion) => {
+		if(isLastFormEmpty || checkProperties(values.wishes[0])) {
+			setFieldValue(`wishes[${lastIndex}].wishName`, suggestion.title)
+			setFieldValue(`wishes[${lastIndex}].price`, suggestion.price)
+			setFieldValue(`wishes[${lastIndex}].url`, suggestion.url)
+			setFieldValue(`wishes[${lastIndex}].photo`, suggestion.image)
 		} else {
 			arrayHelpers.push({
 				wishName: suggestion.title,
@@ -80,6 +93,7 @@ const GiftSuggestionModal = ({
 									<p>NGN {item.price}</p>
 								</div>
 							</div>
+
 							{item.selected ? (
 								<button 
 									type='button' 
@@ -91,7 +105,7 @@ const GiftSuggestionModal = ({
 							): (
 								<button 
 									type='button' 
-									onClick={() => selectSuggestion(item)} 
+									onClick={() => addSuggestion(item)} 
 								>
 									Add
 								</button>

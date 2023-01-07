@@ -178,7 +178,17 @@ const WishDetailForm = () => {
 									<button
 										type='button'
 										className='add_another_wish'
-										onClick={() => arrayHelpers.push('')}
+										onClick={() => {
+											arrayHelpers.push({
+												wishName: '',
+												photo: '',
+												url: '',
+												currency: '',
+												price: '',
+												description: '',
+												quantity: '',
+											});								
+										}}
 									>
 										+ Add another
 									</button>
