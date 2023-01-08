@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CloseIcon from '../assets/icons/button-close.svg';
 import Logo from '../assets/images/logo.svg';
 import { giftSuggestions } from '../data';
@@ -8,8 +8,8 @@ const GiftSuggestionModal = ({
 	setFieldValue,
 	values,
 	arrayHelpers,
+	resetForm,
 }) => {
-	const [suggestion, setSuggestion] = useState(giftSuggestions);
 	
 	// Determine if all attributes on the object is null or an empty string
 	function checkProperties(obj) {
@@ -27,41 +27,44 @@ const GiftSuggestionModal = ({
 
 	// function to add suggestion
 	const addSuggestion = (suggestion) => {
-		if(isLastFormEmpty || checkProperties(values.wishes[0])) {
+		if(isLastFormEmpty && checkProperties(values.wishes[0])) {
+			setFieldValue(`wishes[0].id`, suggestion.id)
+			setFieldValue(`wishes[0].wishName`, suggestion.title)
+			setFieldValue(`wishes[0].price`, suggestion.price)
+			setFieldValue(`wishes[0].url`, suggestion.url)
+			setFieldValue(`wishes[0].photo`, suggestion.image)
+		} else if(isLastFormEmpty || checkProperties(values.wishes[0])) {
+			setFieldValue(`wishes[${lastIndex}].id`, suggestion.id)
 			setFieldValue(`wishes[${lastIndex}].wishName`, suggestion.title)
 			setFieldValue(`wishes[${lastIndex}].price`, suggestion.price)
 			setFieldValue(`wishes[${lastIndex}].url`, suggestion.url)
 			setFieldValue(`wishes[${lastIndex}].photo`, suggestion.image)
 		} else {
 			arrayHelpers.push({
+				id: suggestion.id,
 				wishName: suggestion.title,
 				price: suggestion.price,
 				url: suggestion.url,
 				photo: suggestion.image,
 			});
 		}
-		setSuggestion(
-			giftSuggestions.map((item) => {
-				if (item.id === suggestion.id) {
-					item.selected = !item.selected;
-				}
-				return item;
-			})
-		);
 	};
 
 	// Remove suggestion
-	const removeSuggestion = (idx, suggestion) => {
-		arrayHelpers.remove(idx)
-		setSuggestion(
-			giftSuggestions.map((item) => {
-				if (item.id === suggestion.id) {
-					item.selected = !item.selected;
-				}
-				return item;
-			})
-		);
+	const removeSuggestion = (suggestion, idx) => {
+		const indexOf = values.wishes.findIndex((item)=> item.id === suggestion.id)
+
+		if(values.wishes.length === 1) {
+			resetForm({ values: '' });
+		} else {
+			arrayHelpers.remove(indexOf)
+		}
 	};
+	
+	const setBtnState =(suggestion)=> {
+		const exist = values.wishes.find(x => x.id === suggestion.id);
+		return !!exist ? true : false  
+	}
 
 	return (
 		<div className='gift_suggestion_modal_bg'>
@@ -79,7 +82,7 @@ const GiftSuggestionModal = ({
 				</header>
 
 				<div className='item-list'>
-					{suggestion?.map((item, idx) => (
+					{giftSuggestions?.map((item, idx) => (
 						<div className='gift-item' key={item.id}>
 							<div className='item-container'>
 								<img
@@ -94,10 +97,10 @@ const GiftSuggestionModal = ({
 								</div>
 							</div>
 
-							{item.selected ? (
+							{setBtnState(item) ? (
 								<button 
 									type='button' 
-									onClick={() => removeSuggestion(idx, item)}
+									onClick={() => removeSuggestion(item, idx)}
 									style={{border: '1px solid #9f2424', color: '#9f2424'}}
 								>
 									Remove

@@ -159,7 +159,7 @@ const WishDetailForm = () => {
 					}, 500)
 				}
 			>
-				{({ values, handleChange, setFieldValue }) => (
+				{({ values, handleChange, setFieldValue, resetForm }) => (
 					<Form>
 						<FieldArray
 							name='wishes'
@@ -207,6 +207,7 @@ const WishDetailForm = () => {
 											setFieldValue={setFieldValue}
 											values={values}
 											arrayHelpers={arrayHelpers}
+											resetForm={resetForm}
 										/>
 									)}
 								</div>
